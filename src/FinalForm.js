@@ -1139,6 +1139,16 @@ function createForm<FormValues: FormValuesShape>(
       }
     },
 
+    /**
+     * Trigger validate function manual
+     */
+    validate: () => {
+      runValidation(undefined, () => {
+        notifyFieldListeners()
+        notifyFormListeners()
+      })
+    },
+
     subscribe: (
       subscriber: FormSubscriber<FormValues>,
       subscription: FormSubscription
