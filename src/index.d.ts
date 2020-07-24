@@ -223,7 +223,7 @@ export interface FormApi<FormValues = Record<string, any>, InitialFormValues = P
     value: Config<FormValues>[K]
   ) => void
   submit: () => Promise<FormValues | undefined> | undefined
-  validate: () => Promise<any>
+  validate: () => void
   subscribe: (
     subscriber: FormSubscriber<FormValues>,
     subscription: FormSubscription

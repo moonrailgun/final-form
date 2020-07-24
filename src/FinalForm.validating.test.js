@@ -1402,7 +1402,7 @@ describe('Field.validation', () => {
       onSubmit: onSubmitMock
     });
     const noArg = jest.fn()
-    
+
     form.registerField('foo', () => {}, { error: true }, { initialValue: 'value', getValidator: () => noArg })
     const meta = form.getFieldState('foo')
     const { values } = form.getState()
@@ -1417,7 +1417,7 @@ describe('Field.validation', () => {
     const oneArg = jest.fn(val => {})
     const twoArg = jest.fn((val, all) => {})
     const threeArg = jest.fn((val, all, meta) => {})
-    
+
     form.registerField('foo', () => {}, { error: true }, { initialValue: 'value', getValidator: () => oneArg })
     form.registerField('bar', () => {}, { error: true }, { initialValue: 'value', getValidator: () => twoArg })
     form.registerField('baz', () => {}, { error: true }, { initialValue: 'value', getValidator: () => threeArg })
@@ -1427,5 +1427,19 @@ describe('Field.validation', () => {
     expect(oneArg.mock.calls[0][2]).toBeUndefined()
     expect(twoArg.mock.calls[0][2]).toBeUndefined()
     expect(threeArg.mock.calls[0][2]).toEqual(meta)
+  })
+
+  it('should trigger validation by manual', () => {
+    const validate = jest.fn()
+    const form = createForm({
+      onSubmit: onSubmitMock,
+      validate
+    })
+
+    expect(validate).toHaveBeenCalledTimes(1)
+
+    form.validate()
+
+    expect(validate).toHaveBeenCalledTimes(2)
   })
 })

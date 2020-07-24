@@ -181,6 +181,14 @@ Submits the form if there are currently no validation errors. It may return
 `undefined` or a `Promise` depending on the nature of the `onSubmit`
 configuration value given to the form when it was created.
 
+## `validate`
+
+```ts
+() => void
+```
+
+Validate form manual, Its useful if you donn`t wanna submit form but just validate all field.
+
 ## `subscribe`
 
 <!-- prettier-ignore -->
